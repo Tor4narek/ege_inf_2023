@@ -1,0 +1,27 @@
+#Решение №13 про подсчет путей с помощью рекурсии
+next = dict()
+
+next["А"] = "БГ"
+next["Б"] = "Д"
+next["В"] = "БАГД"
+next["Г"] = "ЕЖ"
+next["Д"] = "ИЛЕ"
+next["Е"] = "ЛВ"
+next["Ж"] = "Е"
+next["И"] = "Л"
+next["К"] = "Ж"
+next["Л"] = "ЖК"
+
+
+def f(p: str) -> int:
+    if p[0] == p[-1] == "Е" and len(p) > 1:
+        print(p)
+        return 1
+
+    s = 0
+    for v in next[p[-1]]:
+        if v not in p[1:]:
+            s += f(p + v)
+    return s
+
+print(f("Е"))
